@@ -1,10 +1,12 @@
+import GalleryHero from "../components/gallery/GalleryHero";
+import GalleryGrid from "../components/gallery/GalleryGrid";
+
 function GalleryPage() {
     return (
-        <section className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl">
-                <h1>GalleryPage</h1>
-            </div>
-        </section>
+        <>
+        <GalleryHero/>
+        <GalleryGrid/>
+        </>    
     );
 }
 
