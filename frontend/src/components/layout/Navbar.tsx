@@ -2,6 +2,10 @@ import {useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import {EnvelopeIcon, PhoneIcon, XMarkIcon, Bars3Icon} from "@heroicons/react/24/outline"
 
+type NavbarProps = {
+    onBookNowClick: () => void;
+};
+
 const NavLinks = [
     {name: "Tattoo", path: "/tattoo"},
     {name: "Gallery", path: "/gallery"},
@@ -9,8 +13,16 @@ const NavLinks = [
     {name: "Contact Us", path: "/contact"},
 ];
 
-function Navbar() {
+function Navbar({onBookNowClick}: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen((prev) => !prev);
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
+    };
 
     return (
         <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-neutral-950/90 backdrop-blur">
@@ -49,19 +61,20 @@ function Navbar() {
                 </nav>
                 
                      <div className="hidden md:block">
-                    <Link
-                        to="/contact"
-                        className="inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition hover:scale-110"
+                    <button
+                        type="button"
+                        onClick={onBookNowClick}
+                        className="mt-2 rounded-full bg-white px-6 py-3 text-base font-mono font-semibold text-black transition hover:scale-105"
                     >
                         Book Now
-                    </Link>
+                    </button>
                 </div>
                 
 
                 <button
                     type="button"
+                    onClick={toggleMenu}
                     className="md:hidden text-white"
-                    onClick={() => setIsOpen((prev) => !prev)}
                     aria-label="Toggle menu"
                 >
                     {isOpen ? (
@@ -90,7 +103,7 @@ function Navbar() {
                             <NavLink
                                 key={link.path}
                                 to={link.path}
-                                onClick={() => setIsOpen(false)}
+                                onClick={closeMenu}
                                 className={({isActive}) => 
                                 `py-3 text-sm font-medium transition ${
                                     isActive ? "text-white" : "text-neutral-400 hover:text-white hover:scale-105"
@@ -101,13 +114,16 @@ function Navbar() {
                             </NavLink>
                         ))}
 
-                        <Link
-                            to="/contact"
-                            onClick={() => setIsOpen(false)}
-                            className="mt-3 inline-flex w-fit rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition hover:scale-105"
+                        <button
+                            type="button"
+                            onClick={() => {
+                                closeMenu();
+                                onBookNowClick();
+                            }}
+                            className="mt-2 rounded-full bg-white px-6 py-3 text-base font-mono font-semibold text-black transition hover:scale-105"
                         >
                             Book Now
-                        </Link>
+                        </button>
                     </nav>
                 </div>
             )}
