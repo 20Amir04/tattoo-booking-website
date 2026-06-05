@@ -1,6 +1,5 @@
+import { API_BASE_URL } from "./api";
 import type { ConsultationFormData } from "../types/consultation";
-
-const API_BASE_URL = "";
 
 export async function submitConsultationRequest(
     formData: ConsultationFormData
@@ -16,7 +15,7 @@ export async function submitConsultationRequest(
         payload.append("referenceFile", formData.referenceFile);
     }
 
-    const response = await fetch(`${API_BASE_URL}/consultation-requests`, {
+    const response = await fetch(`${API_BASE_URL}/ConsultationRequest`, {
         method: "POST",
         body: payload,
     });

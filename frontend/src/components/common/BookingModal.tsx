@@ -7,6 +7,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { BookingFormData } from "../../types/booking";
 import { timeOptions, dayOptions } from "../../data/bookingModalData";
+import { SubmitBookingRequest } from "../../services/bookingService";
 
 type BookingModalProps = {
   isOpen: boolean;
@@ -123,19 +124,50 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
     }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+ const [isSubmitting, setIsSubmitting] = useState(false);
+ const [successMessage, setSuccessMessage] = useState("");
+ const [errorMessage, setErrorMessage] = useState("");
 
-    console.log("Booking form data:", formData);
+ const resetForm = () => {
+  setFormData({
+     firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    isCoverUp: "",
+    instagram: "",
+    description: "",
+    preferredTime: [],
+    preferredDays: [],
+    comments: "",
+    referencePhotos: [],
+  });
+ };
 
-    // потом подключим backend/API
-  };
+ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  setIsSubmitting(true);
+  setSuccessMessage("");
+  setErrorMessage("");
+
+  try {
+    await SubmitBookingRequest(formData);
+    setSuccessMessage("Booking request sent successfully.");
+    resetForm();
+  } catch (error) {
+    console.error(error);
+    setErrorMessage("Something went wrong. Please try again later.");
+  } finally {
+    setIsSubmitting(false);
+  }
+ };
 
   if (!shouldRender) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 py-6 transition-opacity duration-300 ${
+      className={`fixed inset-0 z-100 flex items-center justify-center bg-black/70 px-4 py-6 transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
       onClick={onClose}
@@ -370,12 +402,21 @@ function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 className="hidden"
               />
             </div>
+            
+              {successMessage && (
+                <p className="text-sm font-medium font-mono text-green-700">{successMessage}</p>
+              )}
+
+              {errorMessage && (
+                <p className="text-sm font-medium font-mono text-red-500">{errorMessage}</p>
+              )}
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="w-full border border-black px-6 py-4 text-3xl font-black transition hover:bg-black hover:text-white"
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>

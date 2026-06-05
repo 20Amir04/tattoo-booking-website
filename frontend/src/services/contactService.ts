@@ -1,6 +1,5 @@
+import { API_BASE_URL } from "./api";
 import type { ContactFormData } from "../types/contact";
-
-const API_BASE_URL = "";
 
 export async function submitContactRequest(
     formData: ContactFormData
@@ -17,7 +16,7 @@ export async function submitContactRequest(
         payload.append("attachment", formData.attachment);
     }
 
-    const response = await fetch(`${API_BASE_URL}/contact-requests`, {
+    const response = await fetch(`${API_BASE_URL}/ContactRequest`, {
         method: "POST",
         body:payload,
     });
