@@ -2,14 +2,13 @@
 
 namespace TattooStudioApi.DTOs
 {
-    public class ContactRequestDto
+    public class ConsultationRequestDto
     {
         public string FullName { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Subject { get; set; } = string.Empty;
-        public string Message { get; set; } = string.Empty;
+        public string Idea { get; set; } = string.Empty;
 
-        public IFormFile? Attachment { get; set; }
+        public IFormFile? ReferenceFile { get; set; }
     }
 }

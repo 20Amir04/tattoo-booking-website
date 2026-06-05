@@ -7,32 +7,32 @@ namespace TattooStudioApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContactRequestController : ControllerBase
+    public class ConsultationRequestController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public ContactRequestController(AppDbContext context)
+        public ConsultationRequestController(AppDbContext context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] ContactRequestDto dto)
+        public async Task<IActionResult> Create([FromForm] ConsultationRequestDto dto)
         {
-            var contactRequest = new ContactRequest
+            var consultationRequest = new ConsultationRequest
             {
                 FullName = dto.FullName,
                 Phone = dto.Phone,
                 Email = dto.Email,
-                Subject = dto.Subject,
-                Message = dto.Message,
-                AttachmentPath = dto.Attachment?.FileName ?? string.Empty
+                Idea = dto.Idea,
+                ReferenceFilePath = dto.ReferenceFile?.FileName ?? string.Empty
             };
 
-            _context.ContactRequest.Add(contactRequest);
+            _context.ConsultationRequest.Add(consultationRequest);
+
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Contact request saved successfully." });
+            return Ok(new { message = "Consultation request saved successfully." });
         }
     }
 }

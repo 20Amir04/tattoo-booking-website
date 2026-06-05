@@ -1,6 +1,6 @@
 @TattooStudioApi_HostAddress = http://localhost:5289
 
-GET {{TattooStudioApi_HostAddress}}/weatherforecast/
+GET {{TattooStudioApi_HostAddress}}/
 Accept: application/json
 
 ###
