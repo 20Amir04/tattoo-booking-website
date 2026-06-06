@@ -148,8 +148,6 @@ Available endpoints:
 - `POST /api/ConsultationRequest`
 - `POST /api/ContactRequest`
 
----
-
 ## 📸 Screenshots
 <img width="1920" height="1032" alt="Screenshot (1719)" src="https://github.com/user-attachments/assets/292cf860-f5f1-4b50-a7a9-1f924a390fa5" />
 <img width="1920" height="1027" alt="Screenshot (1718)" src="https://github.com/user-attachments/assets/f4f5b902-eab7-4939-bad6-44e110bb941f" />
@@ -164,29 +162,6 @@ Available endpoints:
 <img width="1920" height="1025" alt="Screenshot (1709)" src="https://github.com/user-attachments/assets/981a4b0c-47c1-4b42-8970-935d10bc8a8c" />
 <img width="622" height="909" alt="Screenshot (1708)" src="https://github.com/user-attachments/assets/6b505b1c-14a5-4fa7-92c3-4a9cf307cc34" />
 <img width="1920" height="1025" alt="Screenshot (1707)" src="https://github.com/user-attachments/assets/586a5aa3-3b33-4843-bf0d-6b6f4eabb74f" />
-
-
-### Desktop
-- Home page
-- Tattoo page
-- Gallery page
-- FAQ page
-- Contact page
-- Booking modal
-
-### Mobile
-- Mobile navbar
-- Hero sections
-- Gallery
-- FAQ
-- Contact page
-
----
-
-## ✅ Status
-Project frontend is completed and connected to the backend.
-
----
 
 ## 👨‍💻 Author
 **Amir Arabi**  
